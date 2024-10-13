@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: ecommerce-pipeline
-          image: mohumadkhald/ecommerce_ci_cd:1.0
+          image: mohumadkhald/ecommerce_ci_cd:1.0.0-13
           ports:
             - containerPort: 8080
