@@ -8,7 +8,7 @@ pipeline
     }
 
     parameters {
-        string(name: "REPLICAS", defaultValue: '2', description: 'Num of the Application replicas')
+        string(name: "REPLICAS", defaultValue: '1', description: 'Num of the Application replicas')
     }
 
     stages {
