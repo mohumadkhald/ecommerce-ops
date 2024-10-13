@@ -71,7 +71,7 @@ kind: ConfigMap
 metadata:
   name: app-env
 data:
-  DB_URL: jdbc:mysql://some-mariadb:3306/${DB_NAME}
+  DB_URL: jdbc:mariadb://some-mariadb:3306/${DB_NAME}
   DB_NAME: ecommerce
 
 ---
