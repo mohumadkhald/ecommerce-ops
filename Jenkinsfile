@@ -3,7 +3,7 @@ pipeline
     agent any
 
     environment {
-        APP_NAME = "e2e-pipeline-ci_cd"
+        APP_NAME = "ecommerce_ci_cd"
 
     }
 
@@ -20,7 +20,7 @@ pipeline
 
         stage("Checkout from SCM"){
             steps {
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/mohumadkhald/git-ops'
+                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/mohumadkhald/ecommerce-ops'
             }
         }
 
@@ -43,7 +43,7 @@ pipeline
 
                         git add ./dev/deployment.yml
                         git commit -m "Update ${APP_NAME} image to ${IMAGE_TAG}"
-                        git push https://${USER}:${PASS}@github.com/mohumadkhald/git-ops.git main
+                        git push https://${USER}:${PASS}@github.com/mohumadkhald/ecommerce-ops.git main
                     '''
                 }
             }
