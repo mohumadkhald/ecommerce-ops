@@ -19,10 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: app-env
-                  key: DB_URL
+              value: jdbc:mariadb://10.244.0.39:3306/ecommerce
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
