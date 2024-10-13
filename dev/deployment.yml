@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ecommerce-pipeline
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ecommerce-pipeline
@@ -53,7 +53,7 @@ kind: Deployment
 metadata:
   name: some-mariadb
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: some-mariadb
@@ -101,7 +101,7 @@ kind: Deployment
 metadata:
   name: phpmyadmin
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: phpmyadmin
