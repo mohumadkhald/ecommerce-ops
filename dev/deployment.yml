@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: ecommerce-pipeline
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: ecommerce-pipeline
-  replicas: 2
   template:
     metadata:
       labels:
@@ -17,3 +17,109 @@ spec:
           image: mohumadkhald/ecommerce_ci_cd:1.0.0-16
           ports:
             - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-env
+                  key: DB_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_USER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_PASSWORD
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: org.hibernate.dialect.MySQLDialect
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+          volumeMounts:
+            - mountPath: /usr/app/uploads
+              name: uploads-volume
+      volumes:
+        - name: uploads-volume
+          persistentVolumeClaim:
+            claimName: uploads-pvc
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: some-mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: some-mariadb
+  template:
+    metadata:
+      labels:
+        app: some-mariadb
+    spec:
+      containers:
+        - name: some-mariadb
+          image: mariadb:latest
+          env:
+            - name: MARIADB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-env
+                  key: DB_NAME
+            - name: MARIADB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_USER
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_PASSWORD
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_PASSWORD
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: maria-data-volume
+      volumes:
+        - name: maria-data-volume
+          persistentVolumeClaim:
+            claimName: maria-data-pvc
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin:latest
+          env:
+            - name: PMA_HOST
+              value: some-mariadb
+            - name: PMA_PORT
+              value: "3306"
+          ports:
+            - containerPort: 80
+
+
+---
