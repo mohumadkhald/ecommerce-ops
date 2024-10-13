@@ -97,6 +97,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: phpmyadmin
+  namespace: myapp
 spec:
   replicas: 1
   selector:
@@ -109,10 +110,10 @@ spec:
     spec:
       containers:
         - name: phpmyadmin
-          image: phpmyadmin:latest
+          image: phpmyadmin/phpmyadmin
           env:
             - name: PMA_HOST
-              value: some-mariadb
+              value: "some-mariadb-service"
             - name: PMA_PORT
               value: "3306"
           ports:
