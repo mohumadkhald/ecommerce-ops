@@ -12,7 +12,6 @@ spec:
       targetPort: 8080
       nodePort: 30001
 
-
 ---
 apiVersion: v1
 kind: Service
@@ -72,7 +71,7 @@ kind: ConfigMap
 metadata:
   name: app-env
 data:
-  DB_URL: jdbc:mariadb://some-mariadb:3306/${DB_NAME}
+  DB_URL: jdbc:mariadb://some-mariadb:3306/ecommerce
   DB_NAME: ecommerce
 
 ---
