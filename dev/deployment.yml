@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ecommerce-pipeline
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ecommerce-pipeline
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ecommerce-pipeline
-          image: mohumadkhald/ecommerce_ci_cd:1.0.0-19
+          image: mohumadkhald/ecommerce_ci_cd:1.0.0-20
           ports:
             - containerPort: 8080
           env:
@@ -48,7 +48,7 @@ kind: Deployment
 metadata:
   name: some-mariadb
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: some-mariadb
@@ -96,7 +96,7 @@ metadata:
   name: phpmyadmin
   namespace: myapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: phpmyadmin
