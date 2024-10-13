@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ecommerce-pipeline
-          image: mohumadkhald/ecommerce_ci_cd:1.0.0-16
+          image: mohumadkhald/ecommerce_ci_cd:1.0.0-17
           ports:
             - containerPort: 8080
           env:
@@ -53,7 +53,7 @@ kind: Deployment
 metadata:
   name: some-mariadb
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: some-mariadb
@@ -101,7 +101,7 @@ kind: Deployment
 metadata:
   name: phpmyadmin
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: phpmyadmin
