@@ -34,7 +34,7 @@ spec:
                   name: db-secrets
                   key: MYSQL_PASSWORD
             - name: SPRING_JPA_DATABASE_PLATFORM
-              value: org.hibernate.dialect.MySQLDialect
+              value: org.hibernate.dialect.MariaDBDialect
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: update
           volumeMounts:
