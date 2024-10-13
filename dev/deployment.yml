@@ -19,7 +19,7 @@ spec:
             - containerPort: 8443
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mariadb://10.244.0.74:3306/ecommerce
+              value: jdbc:mariadb://10.244.0.80:3306/ecommerce
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -110,7 +110,7 @@ spec:
           image: phpmyadmin/phpmyadmin
           env:
             - name: PMA_HOST
-              value: "some-mariadb"  # Replace this with your actual MariaDB service IP
+              value: "10.244.0.80"  # Replace this with your actual MariaDB service IP
             - name: PMA_PORT
               value: "3306"
           ports:
