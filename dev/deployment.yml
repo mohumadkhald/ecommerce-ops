@@ -110,7 +110,7 @@ spec:
           image: phpmyadmin/phpmyadmin
           env:
             - name: PMA_HOST
-              value: "10.244.0.61"  # Replace this with your actual MariaDB service IP
+              value: "10.244.0.74"  # Replace this with your actual MariaDB service IP
             - name: PMA_PORT
               value: "3306"
           ports:
