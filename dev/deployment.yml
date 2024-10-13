@@ -16,7 +16,7 @@ spec:
         - name: ecommerce-pipeline
           image: mohumadkhald/ecommerce_ci_cd:1.0.0-20
           ports:
-            - containerPort: 8085
+            - containerPort: 8443
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mariadb://10.244.0.61:3306/ecommerce
