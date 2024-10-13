@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ecommerce-pipeline
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ecommerce-pipeline
@@ -16,7 +16,7 @@ spec:
         - name: ecommerce-pipeline
           image: mohumadkhald/ecommerce_ci_cd:1.0.0-20
           ports:
-            - containerPort: 8080
+            - containerPort: 8085
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mariadb://10.244.0.39:3306/ecommerce
@@ -48,7 +48,7 @@ kind: Deployment
 metadata:
   name: some-mariadb
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: some-mariadb
@@ -96,7 +96,7 @@ metadata:
   name: phpmyadmin
   namespace: myapp
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: phpmyadmin
