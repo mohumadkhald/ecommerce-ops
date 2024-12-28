@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ecommerce-pipeline
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ecommerce-pipeline
@@ -19,7 +19,7 @@ spec:
             - containerPort: 8443
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mariadb://10.244.0.30:3306/ecommerce
+              value: jdbc:mariadb://some-mariadb-service:3306/ecommerce  # Use service name here
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -110,7 +110,7 @@ spec:
           image: phpmyadmin/phpmyadmin
           env:
             - name: PMA_HOST
-              value: "10.244.0.30"  # Replace this with your actual MariaDB service IP
+              value: "some-mariadb-service"  # Use the service name instead of the IP
             - name: PMA_PORT
               value: "3306"
           ports:

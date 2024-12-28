@@ -24,7 +24,7 @@ spec:
     - port: 3306
       protocol: TCP
       targetPort: 3306
-  clusterIP: None
+  clusterIP: None  # Headless service for direct pod access
 
 ---
 apiVersion: v1
@@ -71,7 +71,7 @@ kind: ConfigMap
 metadata:
   name: app-env
 data:
-  DB_URL: jdbc:mariadb://10.244.0.30:3306/ecommerce
+  DB_URL: jdbc:mariadb://some-mariadb-service:3306/ecommerce  # Use service name in the config map as well
   DB_NAME: ecommerce
 
 ---
@@ -81,5 +81,5 @@ metadata:
   name: db-secrets
 type: Opaque
 data:
-  MYSQL_USER: cm9vdA==
-  MYSQL_PASSWORD: cm9vdA==
+  MYSQL_USER: cm9vdA==  # base64 encoded value
+  MYSQL_PASSWORD: cm9vdA==  # base64 encoded value
