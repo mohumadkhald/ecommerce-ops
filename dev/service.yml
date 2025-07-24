@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 8443
       protocol: TCP
-      targetPort: 8443
+      targetPort: 8080
       nodePort: 30005
 
 ---
